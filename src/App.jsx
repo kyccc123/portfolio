@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, X, ChevronRight, Mail, Instagram, Phone, Download } from 'lucide-react';
+import { ArrowRight, X, ChevronRight, Mail, Instagram, Phone } from 'lucide-react';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -15,12 +15,7 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // PDF 저장 (인쇄 기능 활용)
-  const handlePrint = () => {
-    window.print();
-  };
-
-  // 프로젝트 데이터 (업데이트됨)
+  // 프로젝트 데이터
   const projects = [
     {
       id: '01',
@@ -149,16 +144,16 @@ const App = () => {
   // --- 컴포넌트 ---
 
   const Navigation = () => (
-    <nav className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm border-b border-gray-100' : 'bg-transparent'} print:absolute print:top-0 print:left-0 print:w-full print:bg-transparent print:border-none`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-sm border-b border-gray-100' : 'bg-transparent'}`}>
       <div 
         className="text-xl font-serif font-bold tracking-tighter cursor-pointer z-50 mix-blend-difference text-black"
         onClick={() => {setActiveSection('home'); closeDetail();}}
       >
-        KANG. YOOCHAN
+        KANG. YU CHAN
       </div>
-      
+       
       <div className="flex items-center gap-8">
-        <div className="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-600 print:hidden">
+        <div className="hidden md:flex gap-8 text-sm font-medium tracking-wide text-gray-600">
           {['About', 'Projects', 'Contact'].map((item) => (
             <button 
               key={item}
@@ -174,48 +169,39 @@ const App = () => {
             </button>
           ))}
         </div>
-
-        {/* PDF 저장 버튼 추가 */}
-        <button 
-          onClick={handlePrint}
-          className="hidden md:flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors print:hidden"
-        >
-          <Download size={14} />
-          Save as PDF
-        </button>
       </div>
     </nav>
   );
 
   const Hero = () => (
-    <section id="home" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 bg-[#F9F9F9] print:min-h-0 print:pt-0">
+    <section id="home" className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 bg-[#F9F9F9]">
       <div className="max-w-6xl w-full mx-auto">
         <p className="text-sm md:text-base text-gray-500 mb-4 tracking-widest uppercase animate-fade-in-up">
-          Strategic Planner Portfolio
+          KANG YU CHAN PORTFOLIO
         </p>
-        <h1 className="text-5xl md:text-8xl font-serif font-light leading-[1.1] text-[#1a1a1a] mb-12 print:text-5xl">
+        <h1 className="text-5xl md:text-8xl font-serif font-light leading-[1.1] text-[#1a1a1a] mb-12">
           <span className="block animate-slide-in-left" style={{animationDelay: '0.1s'}}>LOGICAL</span>
           <span className="block italic font-normal ml-8 md:ml-20 animate-slide-in-left" style={{animationDelay: '0.2s'}}>STRATEGY</span>
           <span className="block text-right mr-4 md:mr-20 animate-slide-in-left" style={{animationDelay: '0.3s'}}>& TECH FUSION</span>
         </h1>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 md:mt-24 border-t border-gray-300 pt-8 print:mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 md:mt-24 border-t border-gray-300 pt-8">
           <div>
-            <span className="text-xs font-bold text-gray-400 block mb-2">Philosophy (Why)</span>
+            <span className="text-xs font-bold text-gray-400 block mb-2">Logic (Philosophy)</span>
             <p className="text-sm text-gray-600 leading-relaxed">
-              근본적인 문제를 탐구하고<br/>논리적으로 정의합니다.
+              현상의 이면을 꿰뚫어<br/>진짜 문제를 정의하는 힘
             </p>
           </div>
           <div>
-            <span className="text-xs font-bold text-gray-400 block mb-2">Business (How)</span>
+            <span className="text-xs font-bold text-gray-400 block mb-2">Strategy (Business)</span>
             <p className="text-sm text-gray-600 leading-relaxed">
-              효율성과 가치를 고려한<br/>최적의 전략을 수립합니다.
+              시장과 고객을 분석하여<br/>실현 가능한 전략을 수립하는 힘
             </p>
           </div>
           <div>
-            <span className="text-xs font-bold text-gray-400 block mb-2">Technology (What)</span>
+            <span className="text-xs font-bold text-gray-400 block mb-2">Tech (Data & Tech)</span>
             <p className="text-sm text-gray-600 leading-relaxed">
-              기술적 통찰을 바탕으로<br/>혁신적 솔루션을 구현합니다.
+              Python과 AI 등 최신 기술을 도구로<br/>활용해 솔루션을 구체화하는 힘
             </p>
           </div>
         </div>
@@ -224,7 +210,7 @@ const App = () => {
   );
 
   const Attitude = () => (
-    <section id="about" className="py-24 px-6 md:px-12 bg-white print:py-12">
+    <section id="about" className="py-24 px-6 md:px-12 bg-white">
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="col-span-12 md:col-span-4">
           <h2 className="text-3xl font-serif italic mb-6">Attitude</h2>
@@ -247,7 +233,7 @@ const App = () => {
               최적의 솔루션을 제안합니다.
             </p>
           </div>
-          
+           
           <div className="grid grid-cols-2 gap-4 mt-8">
              <div className="border border-gray-200 p-4 hover:bg-gray-50 transition-colors">
                 <h3 className="text-xs font-bold uppercase tracking-wider mb-2">Education</h3>
@@ -266,24 +252,24 @@ const App = () => {
   );
 
   const ProjectList = () => (
-    <section id="projects" className="py-24 px-6 md:px-12 bg-[#F5F5F7] print:bg-white print:py-12">
+    <section id="projects" className="py-24 px-6 md:px-12 bg-[#F5F5F7]">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-end justify-between mb-16">
           <h2 className="text-4xl md:text-5xl font-serif">Selected Works</h2>
           <span className="text-sm text-gray-500 hidden md:block">Based on Logic, Strategy, and Data</span>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 print:block print:gap-0">
+        <div className="grid grid-cols-1 gap-12">
           {projects.map((project, index) => (
             <div 
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer bg-white p-0 md:p-8 hover:shadow-xl transition-all duration-500 ease-out border border-transparent hover:border-gray-200 print:shadow-none print:border-b print:border-gray-200 print:mb-8 print:pb-8"
+              className="group cursor-pointer bg-white p-0 md:p-8 hover:shadow-xl transition-all duration-500 ease-out border border-transparent hover:border-gray-200"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                 {/* Visual Area */}
-                <div className={`col-span-12 md:col-span-5 h-64 md:h-80 ${project.color} flex items-center justify-center relative overflow-hidden print:border print:border-gray-100`}>
-                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 print:hidden"></div>
+                <div className={`col-span-12 md:col-span-5 h-64 md:h-80 ${project.color} flex items-center justify-center relative overflow-hidden`}>
+                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300"></div>
                    <span className="text-9xl font-serif text-black/5 absolute -bottom-10 -right-10 select-none transition-transform duration-700 group-hover:scale-110">
                      {project.id}
                    </span>
@@ -302,7 +288,7 @@ const App = () => {
                       </span>
                       <span className="text-xs text-gray-400">{project.period}</span>
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-serif mb-3 group-hover:translate-x-2 transition-transform duration-300 print:transform-none">
+                    <h3 className="text-3xl md:text-4xl font-serif mb-3 group-hover:translate-x-2 transition-transform duration-300">
                       {project.title}
                     </h3>
                     <p className="text-gray-500 text-lg font-light mb-6">
@@ -312,8 +298,8 @@ const App = () => {
                       {project.overview}
                     </p>
                   </div>
-                  
-                  <div className="flex items-center text-sm font-medium uppercase tracking-wider group-hover:underline underline-offset-4 print:hidden">
+                   
+                  <div className="flex items-center text-sm font-medium uppercase tracking-wider group-hover:underline underline-offset-4">
                     View Case Study <ArrowRight className="ml-2 w-4 h-4" />
                   </div>
                 </div>
@@ -330,29 +316,29 @@ const App = () => {
     const p = selectedProject;
 
     return (
-      <div className="fixed inset-0 z-[60] bg-white overflow-y-auto animate-fade-in print:static print:overflow-visible">
-        <div className="relative max-w-7xl mx-auto bg-white min-h-screen pb-20 print:min-h-0 print:pb-0">
-          
-          {/* Close Button - Hide on Print */}
+      <div className="fixed inset-0 z-[60] bg-white overflow-y-auto animate-fade-in">
+        <div className="relative max-w-7xl mx-auto bg-white min-h-screen pb-20">
+           
+          {/* Close Button */}
           <button 
             onClick={closeDetail}
-            className="fixed top-8 right-8 z-50 p-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors print:hidden"
+            className="fixed top-8 right-8 z-50 p-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
           >
             <X size={24} />
           </button>
 
           {/* Header Image Area */}
-          <div className={`w-full h-[40vh] md:h-[50vh] ${p.color} flex items-center justify-center flex-col print:h-64 print:border print:border-gray-200`}>
-             <h1 className="text-4xl md:text-6xl font-serif text-center px-4 mb-4 opacity-0 animate-slide-up print:opacity-100 print:animate-none" style={{animationDelay: '0.2s', animationFillMode: 'forwards'}}>
+          <div className={`w-full h-[40vh] md:h-[50vh] ${p.color} flex items-center justify-center flex-col`}>
+             <h1 className="text-4xl md:text-6xl font-serif text-center px-4 mb-4 opacity-0 animate-slide-up" style={{animationDelay: '0.2s', animationFillMode: 'forwards'}}>
                {p.title}
              </h1>
-             <p className="text-lg md:text-xl font-light text-center opacity-0 animate-slide-up print:opacity-100 print:animate-none" style={{animationDelay: '0.3s', animationFillMode: 'forwards'}}>
+             <p className="text-lg md:text-xl font-light text-center opacity-0 animate-slide-up" style={{animationDelay: '0.3s', animationFillMode: 'forwards'}}>
                {p.subtitle}
              </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 px-6 md:px-12 py-16 md:py-24 print:py-8">
-            
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 px-6 md:px-12 py-16 md:py-24">
+             
             {/* Left Column: Project Info */}
             <div className="col-span-12 md:col-span-4 space-y-12">
                <div>
@@ -393,9 +379,9 @@ const App = () => {
 
               <div className="space-y-12">
                  {p.details.map((detail, idx) => (
-                   <div key={idx} className="group print:break-inside-avoid">
+                   <div key={idx} className="group">
                      <h4 className="text-xl font-bold mb-3 flex items-center">
-                       <span className="w-2 h-2 bg-black rounded-full mr-3 group-hover:scale-150 transition-transform print:hidden"></span>
+                       <span className="w-2 h-2 bg-black rounded-full mr-3 group-hover:scale-150 transition-transform"></span>
                        {detail.label}
                      </h4>
                      <p className="text-gray-600 leading-relaxed pl-5 border-l border-gray-200">
@@ -406,14 +392,14 @@ const App = () => {
               </div>
 
               {/* Visual Mockups Placeholder */}
-              <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-4 print:break-before-auto">
-                <div className="bg-gray-100 aspect-[4/3] flex items-center justify-center text-gray-400 text-sm uppercase tracking-widest print:border print:border-gray-200">
+              <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-100 aspect-[4/3] flex items-center justify-center text-gray-400 text-sm uppercase tracking-widest">
                   Process Image 01
                 </div>
-                <div className="bg-gray-100 aspect-[4/3] flex items-center justify-center text-gray-400 text-sm uppercase tracking-widest print:border print:border-gray-200">
+                <div className="bg-gray-100 aspect-[4/3] flex items-center justify-center text-gray-400 text-sm uppercase tracking-widest">
                   Result Image 02
                 </div>
-                <div className="bg-gray-100 aspect-video col-span-1 md:col-span-2 flex items-center justify-center text-gray-400 text-sm uppercase tracking-widest print:border print:border-gray-200">
+                <div className="bg-gray-100 aspect-video col-span-1 md:col-span-2 flex items-center justify-center text-gray-400 text-sm uppercase tracking-widest">
                   Final Showcase
                 </div>
               </div>
@@ -421,7 +407,7 @@ const App = () => {
 
           </div>
 
-          <div className="px-6 md:px-12 pb-12 flex justify-between items-center border-t border-gray-100 pt-8 print:hidden">
+          <div className="px-6 md:px-12 pb-12 flex justify-between items-center border-t border-gray-100 pt-8">
              <button onClick={closeDetail} className="text-sm font-bold uppercase hover:underline">
                ← Back to List
              </button>
@@ -434,14 +420,14 @@ const App = () => {
   };
 
   const Contact = () => (
-    <section id="contact" className="py-24 px-6 md:px-12 bg-black text-white print:bg-white print:text-black print:py-12">
+    <section id="contact" className="py-24 px-6 md:px-12 bg-black text-white">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-serif italic mb-8">Ready to Connect</h2>
-        <p className="text-gray-400 mb-12 font-light print:text-gray-600">
+        <p className="text-gray-400 mb-12 font-light">
           논리적 사고, 경영학적 분석, 기술에 대한 이해를 바탕으로<br className="hidden md:block"/>
           최적의 해결책을 함께 찾아가겠습니다.
         </p>
-        
+         
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-16">
           <a href="mailto:machitreechan01@naver.com" className="flex items-center gap-3 text-lg hover:text-gray-300 transition-colors">
             <Mail size={20} /> machitreechan01@naver.com
@@ -452,7 +438,7 @@ const App = () => {
         </div>
 
         <div className="text-xs text-gray-600 uppercase tracking-widest">
-          © 2025 KANG YOOCHAN. All Rights Reserved.
+          © 2025 KANG YU CHAN. All Rights Reserved.
         </div>
       </div>
     </section>
@@ -476,7 +462,7 @@ const App = () => {
       {/* Detail Modal */}
       {selectedProject && <ProjectModal />}
       
-      {/* Global Styles for Animations & Print */}
+      {/* Global Styles for Animations */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -498,11 +484,6 @@ const App = () => {
         .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
         .animate-slide-in-left { animation: slideInLeft 0.8s ease-out forwards opacity-0; }
         .animate-slide-up { animation: slideUp 0.6s ease-out forwards; }
-
-        @media print {
-          @page { margin: 0; }
-          body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-        }
       `}</style>
     </div>
   );
